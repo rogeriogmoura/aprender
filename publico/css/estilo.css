@@ -1,0 +1,141 @@
+/* ===============================
+   ERP UTI DO NOTEBOOK - CSS GLOBAL
+   =============================== */
+
+/* fonte padrão */
+body, .content-wrapper, .card, .navbar, .form-control, button, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif !important;
+  letter-spacing: 0.2px;
+}
+
+/* ===============================
+   DARK MODE
+   =============================== */
+body.dark-mode {
+  background-color: #18122B !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .main-header {
+  background-color: #1e1b2e !important;
+}
+
+body.dark-mode .main-sidebar {
+  background-color: #1b1730 !important;
+}
+
+body.dark-mode .content-wrapper {
+  background-color: #201c35 !important;
+}
+
+body.dark-mode .card {
+  background-color: #2a2344 !important;
+  color: #f5f5f5 !important;
+  border: none !important;
+}
+
+body.dark-mode .card-header {
+  background-color: #241f3a !important;
+  border-bottom: 1px solid #3a345a !important;
+}
+
+/* ===============================
+   LIGHT MODE
+   =============================== */
+body:not(.dark-mode) {
+  background-color: #f7f7fb !important;
+  color: #222 !important;
+}
+
+body:not(.dark-mode) .main-header {
+  background-color: #f0f0f5 !important;
+}
+
+body:not(.dark-mode) .main-sidebar {
+  background-color: #ffffff !important;
+  color: #222 !important;
+}
+
+body:not(.dark-mode) .nav-sidebar .nav-link {
+  color: #444 !important;
+}
+
+body:not(.dark-mode) .nav-sidebar .nav-link.active {
+  background-color: #6c5ce7 !important;
+  color: #fff !important;
+}
+
+body:not(.dark-mode) .nav-sidebar .nav-icon {
+  color: #6c5ce7 !important;
+}
+
+body:not(.dark-mode) .nav-sidebar .nav-link.active .nav-icon {
+  color: #fff !important;
+}
+
+body:not(.dark-mode) .content-wrapper {
+  background-color: #f7f7fb !important;
+}
+
+body:not(.dark-mode) .card {
+  background-color: #ffffff !important;
+  color: #333 !important;
+  border: 1px solid #e5e5e5 !important;
+}
+
+body:not(.dark-mode) .card-header {
+  background-color: #fafafa !important;
+  border-bottom: 1px solid #ddd !important;
+}
+
+/* ===============================
+   LOGO E SIDEBAR
+   =============================== */
+.main-sidebar .brand-link {
+  background: inherit !important;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.main-sidebar .brand-link img {
+  max-height: 60px;
+  width: 100%;
+  object-fit: contain;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* rodapé da sidebar */
+.sidebar-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: .5rem;
+  border-top: 1px solid rgba(0,0,0,.1);
+  background: inherit;
+}
+
+/* ===============================
+   CARDS E ANIMAÇÕES
+   =============================== */
+.hover-zoom {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.hover-zoom:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+.small-box .icon {
+  top: 10px;
+  right: 10px;
+  font-size: 3rem;
+  opacity: .3;
+}
