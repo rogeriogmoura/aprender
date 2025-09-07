@@ -1,0 +1,15 @@
+.main-sidebar {
+  width: 260px;
+}
+
+.main-sidebar .nav-link {
+  font-size: 14px;
+}
+
+.main-sidebar .nav-icon {
+  font-size: 18px;
+}
+
+.main-sidebar .nav-item:hover {
+  background-color: #3a2d5c;
+}
