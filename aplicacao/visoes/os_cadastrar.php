@@ -2,8 +2,11 @@
 require_once __DIR__ . '/../modelos/os_modelo.php';
 $mysqli = new mysqli("localhost", "root", "", "utierp");
 
-// buscar clientes ativos
+// buscar clientes ativos (tabela é PLURAL: clientes)
 $clientes = $mysqli->query("SELECT id, nome FROM clientes WHERE ativo=1 ORDER BY nome ASC");
+
+// buscar técnicos ativos (aqui está certo, a tabela é singular: tecnico)
+$tecnicos = $mysqli->query("SELECT id, nome FROM tecnico WHERE ativo=1 ORDER BY nome ASC");
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -33,9 +36,14 @@ $clientes = $mysqli->query("SELECT id, nome FROM clientes WHERE ativo=1 ORDER BY
     <label>Valor Total:</label><br>
     <input type="number" step="0.01" name="valor_total"><br><br>
 
-    <!-- técnico (opcional) -->
-    <label>Técnico ID:</label><br>
-    <input type="number" name="tecnico_id"><br><br>
+    <!-- técnico -->
+    <label>Técnico Responsável:</label><br>
+    <select name="tecnico_id">
+      <option value="">-- selecione --</option>
+      <?php while($t = $tecnicos->fetch_assoc()): ?>
+        <option value="<?= $t['id'] ?>"><?= htmlspecialchars($t['nome']) ?></option>
+      <?php endwhile; ?>
+    </select><br><br>
 
     <!-- observações -->
     <label>Observações:</label><br>
@@ -45,4 +53,3 @@ $clientes = $mysqli->query("SELECT id, nome FROM clientes WHERE ativo=1 ORDER BY
   </form>
 </body>
 </html>
-
