@@ -1,55 +1,57 @@
 <?php
-require_once __DIR__ . '/../modelos/os_modelo.php';
+// aplicacao/visoes/os_cadastrar.php
 $mysqli = new mysqli("localhost", "root", "", "utierp");
 
-// buscar clientes ativos (tabela é PLURAL: clientes)
+// buscar clientes ativos
 $clientes = $mysqli->query("SELECT id, nome FROM clientes WHERE ativo=1 ORDER BY nome ASC");
-
-// buscar técnicos ativos (aqui está certo, a tabela é singular: tecnico)
+// buscar técnicos ativos
 $tecnicos = $mysqli->query("SELECT id, nome FROM tecnico WHERE ativo=1 ORDER BY nome ASC");
+
+// Conteúdo da tela
+ob_start();
 ?>
-<!doctype html>
-<html lang="pt-br">
-<head>
-  <meta charset="utf-8">
-  <title>Cadastrar OS</title>
-  <link rel="stylesheet" href="../../publico/css/estilo.css">
-</head>
-<body>
-  <h2>Nova Ordem de Serviço</h2>
-  <form method="post" action="../controladores/os_controlador.php">
-    
-    <!-- seleção de cliente -->
-    <label>Cliente:</label><br>
-    <select name="cliente_id" required>
+<h2>Nova Ordem de Serviço</h2>
+
+<form method="post" action="../controladores/os_controlador.php">
+  <div class="form-group">
+    <label>Cliente:</label>
+    <select name="cliente_id" class="form-control" required>
       <option value="">-- selecione --</option>
       <?php while($c = $clientes->fetch_assoc()): ?>
         <option value="<?= $c['id'] ?>"><?= htmlspecialchars($c['nome']) ?></option>
       <?php endwhile; ?>
-    </select><br><br>
+    </select>
+  </div>
 
-    <!-- descrição -->
-    <label>Descrição:</label><br>
-    <textarea name="descricao" required></textarea><br><br>
+  <div class="form-group">
+    <label>Descrição:</label>
+    <textarea name="descricao" class="form-control" required></textarea>
+  </div>
 
-    <!-- valor total -->
-    <label>Valor Total:</label><br>
-    <input type="number" step="0.01" name="valor_total"><br><br>
+  <div class="form-group">
+    <label>Valor Total:</label>
+    <input type="number" step="0.01" name="valor_total" class="form-control">
+  </div>
 
-    <!-- técnico -->
-    <label>Técnico Responsável:</label><br>
-    <select name="tecnico_id">
+  <div class="form-group">
+    <label>Técnico Responsável:</label>
+    <select name="tecnico_id" class="form-control">
       <option value="">-- selecione --</option>
       <?php while($t = $tecnicos->fetch_assoc()): ?>
         <option value="<?= $t['id'] ?>"><?= htmlspecialchars($t['nome']) ?></option>
       <?php endwhile; ?>
-    </select><br><br>
+    </select>
+  </div>
 
-    <!-- observações -->
-    <label>Observações:</label><br>
-    <textarea name="observacoes"></textarea><br><br>
+  <div class="form-group">
+    <label>Observações:</label>
+    <textarea name="observacoes" class="form-control"></textarea>
+  </div>
 
-    <button type="submit">Salvar</button>
-  </form>
-</body>
-</html>
+  <button type="submit" class="btn btn-success">Salvar</button>
+  <a href="os_listar.php" class="btn btn-secondary">Cancelar</a>
+</form>
+<?php
+$conteudo = ob_get_clean();
+$titulo = "Cadastrar OS";
+include __DIR__ . "/layout.php";
